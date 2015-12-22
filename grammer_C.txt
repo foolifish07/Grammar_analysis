@@ -1,0 +1,177 @@
+# 
+# foolifishC expression rules
+# 
+
+primary_expression
+    identifier
+    constant
+    string_literal
+    ( expression )
+
+postfix_expression
+    primary_expression
+    postfix_expression [ expression ]
+
+unary_operator
+    &
+    *
+    +
+    _
+    !
+
+unary_expression
+    postfix_expression
+    unary_operator unary_expression
+
+multiplicative_expression
+    unary_expression
+    multiplicative_expression * unary_expression
+    multiplicative_expression / unary_expression
+    multiplicative_expression % unary_expression
+
+additive_expression
+    multiplicative_expression
+    additive_expression + multiplicative_expression
+    additive_expression _ multiplicative_expression
+
+relational_expression
+    additive_expression
+    relational_expression < additive_expression
+    relational_expression > additive_expression
+    relational_expression <= additive_expression
+    relational_expression >= additive_expression
+
+equality_expression
+    relational_expression
+    equality_expression == relational_expression
+    equality_expression != relational_expression
+
+logical_AND_expression
+    equality_expression
+    logical_AND_expression && equality_expression
+
+logical_OR_expression
+    logical_AND_expression
+    logical_OR_expression || logical_AND_expression
+
+conditional_expression
+    logical_OR_expression
+    logical_OR_expression ? expression : conditional_expression
+
+assignment_operator
+    =
+    *=
+    /=
+    %=
+    +=
+    _=
+
+assignment_expression
+    conditional_expression
+    unary_expression assignment_operator assignment_expression
+
+argument_expression_list
+    assignment_expression
+    argument_expression_list , assignment_expression
+
+constant_expression
+    conditional_expression
+
+expression
+    assignment_expression
+    expression , assignment_expression
+
+
+#
+# foolifishC declaration rules
+#
+
+declaration
+    declaration_specifiers ;
+    declaration_specifiers init_declarator_list ;
+
+declaration_list
+    declaration
+    declaration_list declaration
+
+declaration_specifiers
+    type_specifier
+
+type_specifier
+    char
+    int
+    double
+
+init_declarator_list
+    init_declarator
+    init_declarator_list , init_declarator
+
+init_declarator
+    declarator
+    declarator = initializer
+    
+declarator
+    identifier
+    identifier [ ]
+    identifier [ constant_expression ]
+
+initializer
+    { initializer_list }
+
+initializer_list
+    assignment_expression
+    initializer_list , assignment_expression
+
+#
+# foolifishC statement rules
+#
+
+statement
+    compound_statement
+    expression_statement
+    selection_statement
+    iteration_statement
+    jump_statement
+
+statement_list
+    statement
+    statement_list statement
+
+compound_statement
+    { }
+    { declaration_list }
+    { statement_list }
+    { declaration_list statement_list }
+
+expression_statement
+    : ;
+    | expression ;
+
+selection_statement
+    : IF ( expression ) statement
+    | IF ( expression ) statement ELSE statement
+
+iteration_statement
+    : WHILE ( expression ) statement
+    | FOR ( expression_statement expression_statement ) statement
+    | FOR ( expression_statement expression_statement expression ) statement
+
+jump_statement
+    : CONTINUE ;
+    | BREAK ;
+    | RETURN ;
+    | RETURN expression ;
+
+function_definition
+    type_specifier identifier ( declaration_list ) compound_statement
+
+external_declaration
+    : function_definition
+    | declaration
+
+translation_unit
+    : external_declaration
+    | translation_unit external_declaration
+#
+# foolifishC start translation_unit
+#
