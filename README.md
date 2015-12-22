@@ -106,15 +106,19 @@ SELECT、PRODUCTION 以此non-terminal为左部的产生式以及SELECT 集合�
 
 //读入一个foolifish文法，判断是否为foolifish文法
 //输入完成后调用get_terminal
+
 bool read_grammar(string filename)
 
 //得到终结符
+
 void get_terminal() 
 
 //判断一个元素串是否为终结符
+
 bool isTerminal(string s) 
 
 //得到非终结符的FIRST集合
+
 void get_firstset() 
 
 //布尔类型。以start为开头。开头会先调用get_firstset
@@ -170,8 +174,6 @@ int openlog = 0;
 ```
 是否需要打印程序运行日志 0:否 1:是
 调用如下：
-词法分析
-
 ```cpp
 compile.lex_analysis(lex_grammar , lex_table ,source_code,openlog)
 ```
