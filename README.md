@@ -102,7 +102,8 @@ struct NFA{
 FIRST、FOLLOW、非终结符的FIRST和FOLLOW集
 SELECT、PRODUCTION 以此non-terminal为左部的产生式以及SELECT 集合。
 
-```c++
+```cpp
+
 //读入一个foolifish文法，判断是否为foolifish文法
 //输入完成后调用get_terminal
 bool read_grammar(string filename)
