@@ -161,19 +161,23 @@ char lex_table[maxn] = "lex_table.data";
 //语法文法文件
 char syntax_grammar[maxn] = "syntax_grammar.txt";
 //待分析字符串
-har source_code[maxn] = "source_code.fooc";
+char source_code[maxn] = "source_code.fooc";
 ```
 
 另有个参数
->int openlog = 0;
-
+```cpp
+int openlog = 0;
+```
 是否需要打印程序运行日志 0:否 1:是
 调用如下：
 词法分析
+
 ```cpp
 compile.lex_analysis(lex_grammar , lex_table ,source_code,openlog)
 ```
+
 语法分析
+
 ```cpp
 compile.syntax_analysis( syntax_grammar,lex_table,openlog )
 ```
